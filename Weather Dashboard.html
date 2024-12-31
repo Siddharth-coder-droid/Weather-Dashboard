@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maharashtra Weather Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #87CEEB, #ffffff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .search {
+      margin-bottom: 20px;
+    }
+
+    #city-input {
+      padding: 10px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #search-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #search-button:hover {
+      background-color: #45a049;
+    }
+
+    #weather-display {
+      margin-top: 20px;
+    }
+
+    #city-name {
+      font-size: 1.5em;
+      color: #333;
+    }
+
+    #temperature,
+    #weather {
+      font-size: 1.2em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Maharashtra Weather Dashboard</h1>
+    <div class="search">
+      <input type="text" id="city-input" placeholder="Enter city name">
+      <button id="search-button">Search</button>
+    </div>
+    <div id="weather-display">
+      <h2 id="city-name"></h2>
+      <p id="temperature"></p>
+      <p id="weather"></p>
+    </div>
+  </div>
+  <script>
+    const cities = {
+      "Mumbai": { temperature: "30°C", weather: "Sunny" },
+      "Pune": { temperature: "25°C", weather: "Cloudy" },
+      "Nagpur": { temperature: "32°C", weather: "Hot" },
+      "Aurangabad": { temperature: "28°C", weather: "Rainy" },
+      "Nashik": { temperature: "24°C", weather: "Windy" },
+    };
+
+    const searchButton = document.getElementById('search-button');
+    const cityInput = document.getElementById('city-input');
+    const cityName = document.getElementById('city-name');
+    const temperature = document.getElementById('temperature');
+    const weather = document.getElementById('weather');
+
+    searchButton.addEventListener('click', () => {
+      const city = cityInput.value.trim();
+      if (cities[city]) {
+        displayWeather(city);
+      } else {
+        alert("City not found in Maharashtra. Please try another.");
+      }
+    });
+
+    function displayWeather(city) {
+      cityName.textContent = city;
+      temperature.textContent = `Temperature: ${cities[city].temperature}`;
+      weather.textContent = `Weather: ${cities[city].weather}`;
+    }
+  </script>
+</body>
+</html>
